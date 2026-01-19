@@ -29,18 +29,19 @@ RUN apk add --no-cache curl
 # Copier les fichiers buildés
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copier la configuration nginx personnalisée
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Créer un utilisateur non-root pour Nginx (sécurité)
-RUN chown -R nginx:nginx /usr/share/nginx/html && \
+# Créer les répertoires nécessaires avec les bonnes permissions
+RUN mkdir -p /var/cache/nginx /var/log/nginx && \
+    chown -R nginx:nginx /usr/share/nginx/html && \
     chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
     chown -R nginx:nginx /etc/nginx/conf.d
 
-# Créer le répertoire pour les fichiers temporaires
-RUN mkdir -p /var/run/nginx && \
-    chown -R nginx:nginx /var/run/nginx
+# Copier la configuration nginx personnalisée
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Modifier la configuration nginx principale
+# Commenter la directive user car nous allons utiliser USER dans Dockerfile
+RUN sed -i.bak 's|^user nginx;|# user nginx; commented for Docker USER directive|' /etc/nginx/nginx.conf
 
 # Passer à l'utilisateur nginx
 USER nginx
@@ -48,9 +49,9 @@ USER nginx
 # Exposer le port 80
 EXPOSE 80
 
-# Healthcheck
+# Healthcheck (curl fonctionnera car il est exécuté en tant que nginx)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost/ || exit 1
 
-# Démarrer Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Démarrer Nginx avec PID file dans un répertoire accessible
+CMD ["sh", "-c", "nginx -g 'daemon off; pid /tmp/nginx.pid;'"]
