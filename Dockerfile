@@ -40,8 +40,9 @@ RUN mkdir -p /var/cache/nginx /var/log/nginx && \
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Modifier la configuration nginx principale
-# Commenter la directive user car nous allons utiliser USER dans Dockerfile
-RUN sed -i.bak 's|^user nginx;|# user nginx; commented for Docker USER directive|' /etc/nginx/nginx.conf
+# Commenter la directive user et remplacer/modifier la directive pid
+RUN sed -i.bak 's|^user nginx;|# user nginx; commented for Docker USER directive|' /etc/nginx/nginx.conf && \
+    sed -i.bak -E 's|^pid\s+/[^;]+;|pid /tmp/nginx.pid;|' /etc/nginx/nginx.conf
 
 # Passer à l'utilisateur nginx
 USER nginx
@@ -53,5 +54,5 @@ EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost/ || exit 1
 
-# Démarrer Nginx avec PID file dans un répertoire accessible
-CMD ["sh", "-c", "nginx -g 'daemon off; pid /tmp/nginx.pid;'"]
+# Démarrer Nginx
+CMD ["nginx", "-g", "daemon off;"]
