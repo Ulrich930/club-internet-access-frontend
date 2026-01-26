@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
 import { Wifi, ArrowRight } from 'lucide-react'
 
 /**
