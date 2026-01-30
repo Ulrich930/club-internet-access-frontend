@@ -255,10 +255,10 @@ export default function BuyTicketPage() {
             <Wifi className="h-8 w-8 text-white" />
           </div>
           <h1 className="text-4xl font-bold text-white mb-2">
-            Acheter un ticket Wi-Fi
+            {ticketType ? ticketType.name : 'Acheter un ticket Wi-Fi'}
           </h1>
           <p className="text-white text-opacity-90">
-            Club Internet Access - Université de Kinshasa
+            {ticketType ? ticketType.description : 'Club Internet Access - Université de Kinshasa'}
           </p>
         </div>
 
