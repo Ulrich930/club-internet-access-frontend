@@ -10,26 +10,44 @@
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-300 ease-out;
   }
   
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700;
+    @apply bg-primary-600 text-white hover:bg-primary-700 hover:shadow-lg hover:shadow-primary-500/25 active:scale-[0.98];
   }
   
   .btn-secondary {
-    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300 hover:shadow-md active:scale-[0.98];
   }
   
   .btn-danger {
-    @apply bg-red-600 text-white hover:bg-red-700;
+    @apply bg-red-600 text-white hover:bg-red-700 hover:shadow-lg active:scale-[0.98];
   }
   
   .input {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
   }
   
   .card {
-    @apply bg-white rounded-lg shadow-md p-6;
+    @apply bg-white rounded-lg shadow-md p-6 transition-all duration-300 hover:shadow-lg;
+  }
+  
+  /* Animations d'entrée avec délai (pour stagger) */
+  .animate-fade-in-up-delay-1 { animation: fadeInUp 0.5s ease-out 0.1s forwards; opacity: 0; }
+  .animate-fade-in-up-delay-2 { animation: fadeInUp 0.5s ease-out 0.2s forwards; opacity: 0; }
+  .animate-fade-in-up-delay-3 { animation: fadeInUp 0.5s ease-out 0.3s forwards; opacity: 0; }
+  .animate-fade-in-up-delay-4 { animation: fadeInUp 0.5s ease-out 0.4s forwards; opacity: 0; }
+  .animate-fade-in-up-delay-5 { animation: fadeInUp 0.5s ease-out 0.5s forwards; opacity: 0; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

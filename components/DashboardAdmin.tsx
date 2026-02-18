@@ -66,14 +66,14 @@ export default function DashboardAdmin() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between animate-fade-in-down">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Tableau de bord Admin</h1>
           <p className="text-gray-600 mt-1">Vue d'ensemble complète du système</p>
         </div>
         <button
           onClick={loadData}
-          className="btn btn-secondary"
+          className="btn btn-secondary transition-transform duration-200 hover:scale-105 active:scale-95"
         >
           Actualiser
         </button>
@@ -81,7 +81,7 @@ export default function DashboardAdmin() {
 
       {/* Statistiques principales */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="card">
+        <div className="card opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Comptes Wi-Fi</p>
@@ -90,13 +90,13 @@ export default function DashboardAdmin() {
                 {stats.accounts.active} actifs
               </p>
             </div>
-            <div className="p-3 bg-blue-100 rounded-full">
+            <div className="p-3 bg-blue-100 rounded-full transition-transform duration-300 hover:scale-110">
               <Wifi className="h-6 w-6 text-blue-600" />
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="card opacity-0 animate-fade-in-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Revenus totaux</p>
@@ -107,13 +107,13 @@ export default function DashboardAdmin() {
                 {stats.payments.completed} paiements
               </p>
             </div>
-            <div className="p-3 bg-green-100 rounded-full">
+            <div className="p-3 bg-green-100 rounded-full transition-transform duration-300 hover:scale-110">
               <DollarSign className="h-6 w-6 text-green-600" />
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="card opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Sessions actives</p>
@@ -122,13 +122,13 @@ export default function DashboardAdmin() {
                 {formatBytes(stats.sessions.totalBytesTransferred)}
               </p>
             </div>
-            <div className="p-3 bg-purple-100 rounded-full">
+            <div className="p-3 bg-purple-100 rounded-full transition-transform duration-300 hover:scale-110">
               <Activity className="h-6 w-6 text-purple-600" />
             </div>
           </div>
         </div>
 
-        <div className="card">
+        <div className="card opacity-0 animate-fade-in-up" style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Utilisateurs</p>
@@ -137,7 +137,7 @@ export default function DashboardAdmin() {
                 {stats.users.active} actifs
               </p>
             </div>
-            <div className="p-3 bg-orange-100 rounded-full">
+            <div className="p-3 bg-orange-100 rounded-full transition-transform duration-300 hover:scale-110">
               <Users className="h-6 w-6 text-orange-600" />
             </div>
           </div>
@@ -146,7 +146,7 @@ export default function DashboardAdmin() {
 
       {/* Statistiques détaillées */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card">
+        <div className="card opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
           <h2 className="text-lg font-semibold mb-4">Paiements</h2>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
@@ -207,7 +207,7 @@ export default function DashboardAdmin() {
       {charts && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Graphique des paiements */}
-          <div className="card">
+          <div className="card opacity-0 animate-fade-in-up" style={{ animationDelay: '0.35s', animationFillMode: 'forwards' }}>
             <h2 className="text-lg font-semibold mb-4">Revenus (7 derniers jours)</h2>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={charts.payments}>
@@ -231,7 +231,7 @@ export default function DashboardAdmin() {
           </div>
 
           {/* Graphique des comptes */}
-          <div className="card">
+          <div className="card opacity-0 animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
             <h2 className="text-lg font-semibold mb-4">Comptes créés/expirés</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={charts.accounts}>

@@ -93,13 +93,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   key={item.name}
                   href={item.href}
                   onClick={() => setSidebarOpen(false)}
-                  className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg ${
+                  className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     isActive
                       ? 'bg-primary-50 text-primary-600'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      : 'text-gray-700 hover:bg-gray-100 hover:translate-x-0.5'
                   }`}
                 >
-                  <item.icon className="mr-3 h-5 w-5" />
+                  <item.icon className="mr-3 h-5 w-5 flex-shrink-0" />
                   {item.name}
                 </Link>
               )
@@ -121,13 +121,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg ${
+                  className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     isActive
                       ? 'bg-primary-50 text-primary-600'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      : 'text-gray-700 hover:bg-gray-100 hover:translate-x-0.5'
                   }`}
                 >
-                  <item.icon className="mr-3 h-5 w-5" />
+                  <item.icon className="mr-3 h-5 w-5 flex-shrink-0" />
                   {item.name}
                 </Link>
               )
@@ -144,7 +144,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <button
               onClick={handleLogout}
-              className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg"
+              className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
             >
               <LogOut className="mr-2 h-4 w-4" />
               Déconnexion

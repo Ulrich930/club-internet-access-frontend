@@ -59,11 +59,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-500 to-primary-700">
       {/* Header */}
-      <div className="bg-white bg-opacity-10 backdrop-blur-sm border-b border-white border-opacity-20">
+      <div className="bg-white bg-opacity-10 backdrop-blur-sm border-b border-white border-opacity-20 animate-fade-in-down">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-white bg-opacity-20 rounded-lg">
+              <div className="p-2 bg-white bg-opacity-20 rounded-lg transition-transform duration-300 hover:scale-110">
                 <Wifi className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -74,7 +74,7 @@ export default function HomePage() {
             <div className="flex gap-3">
               <button
                 onClick={() => router.push('/login')}
-                className="px-4 py-2 text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-colors"
+                className="px-4 py-2 text-white hover:bg-white hover:bg-opacity-20 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 Connexion
               </button>
@@ -85,7 +85,7 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-        <div className="mb-12">
+        <div className="mb-12 opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-delay:100ms]">
           <h2 className="text-5xl font-bold text-white mb-4">
             Achetez votre accès Wi-Fi
           </h2>
@@ -95,12 +95,12 @@ export default function HomePage() {
         </div>
 
         {loading ? (
-          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-12">
+          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-12 animate-fade-in">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
             <p className="mt-4 text-white text-opacity-90">Chargement des forfaits...</p>
           </div>
         ) : ticketTypes.length === 0 ? (
-          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-12">
+          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-12 animate-scale-in">
             <ShoppingCart className="h-16 w-16 text-white text-opacity-50 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-white mb-2">
               Aucun forfait disponible
@@ -111,10 +111,10 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ticketTypes.map((type) => (
+            {ticketTypes.map((type, index) => (
               <div
                 key={type.id}
-                className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow"
+                className={`bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] opacity-0 animate-fade-in-up [animation-fill-mode:forwards] ${index === 0 ? '[animation-delay:150ms]' : index === 1 ? '[animation-delay:250ms]' : index === 2 ? '[animation-delay:350ms]' : '[animation-delay:500ms]'}`}
               >
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
@@ -156,10 +156,10 @@ export default function HomePage() {
 
                 <button
                   onClick={() => handleBuyTicket(type.id)}
-                  className="w-full btn btn-primary py-3 text-base font-semibold flex items-center justify-center gap-2"
+                  className="w-full btn btn-primary py-3 text-base font-semibold flex items-center justify-center gap-2 group"
                 >
                   Acheter maintenant
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
             ))}
@@ -167,7 +167,7 @@ export default function HomePage() {
         )}
 
         {/* Footer */}
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center opacity-0 animate-fade-in [animation-fill-mode:forwards] [animation-delay:600ms]">
           <p className="text-white text-opacity-75 text-sm">
             Besoin d'aide ? Contactez-nous à support@clubgei-polytech.org
           </p>

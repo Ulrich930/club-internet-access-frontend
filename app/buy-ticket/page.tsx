@@ -132,10 +132,10 @@ export default function BuyTicketPage() {
   if (purchaseResult) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 px-4 py-12">
-        <div className="max-w-2xl w-full">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className="max-w-2xl w-full animate-scale-in">
+          <div className="bg-white rounded-2xl shadow-xl p-8 transition-shadow duration-300 hover:shadow-2xl">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4 animate-pulse-soft">
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -254,8 +254,8 @@ export default function BuyTicketPage() {
     <div className="min-h-screen bg-gradient-to-br from-primary-500 to-primary-700 px-4 py-12">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white bg-opacity-20 rounded-full mb-4">
+        <div className="text-center mb-8 animate-fade-in-down">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white bg-opacity-20 rounded-full mb-4 transition-transform duration-300 hover:scale-110">
             <Wifi className="h-8 w-8 text-white" />
           </div>
           <h1 className="text-4xl font-bold text-white mb-2">
@@ -267,12 +267,12 @@ export default function BuyTicketPage() {
         </div>
 
         {loading ? (
-          <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
+          <div className="bg-white rounded-2xl shadow-xl p-12 text-center animate-scale-in">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
             <p className="mt-4 text-gray-600">Chargement des tickets disponibles...</p>
           </div>
         ) : tickets.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
+          <div className="bg-white rounded-2xl shadow-xl p-12 text-center animate-scale-in">
             <ShoppingCart className="h-16 w-16 text-gray-400 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
               Aucun ticket disponible
@@ -284,18 +284,18 @@ export default function BuyTicketPage() {
         ) : (
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             {/* Liste des tickets disponibles */}
-            <div className="bg-white rounded-2xl shadow-xl p-6">
+            <div className="bg-white rounded-2xl shadow-xl p-6 animate-fade-in-up opacity-0 transition-shadow duration-300 hover:shadow-2xl" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
               <h2 className="text-xl font-bold text-gray-900 mb-4">
                 Tickets disponibles ({tickets.length})
               </h2>
               <div className="space-y-3 max-h-[600px] overflow-y-auto">
-                {tickets.map((ticket) => (
+                {tickets.map((ticket, index) => (
                   <button
                     key={ticket.id}
                     onClick={() => setSelectedTicket(ticket)}
-                    className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+                    className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-300 hover:scale-[1.01] ${
                       selectedTicket?.id === ticket.id
-                        ? 'border-primary-500 bg-primary-50'
+                        ? 'border-primary-500 bg-primary-50 ring-2 ring-primary-200'
                         : 'border-gray-200 hover:border-primary-300 hover:bg-gray-50'
                     }`}
                   >
@@ -331,7 +331,7 @@ export default function BuyTicketPage() {
             </div>
 
             {/* Formulaire d'achat */}
-            <div className="bg-white rounded-2xl shadow-xl p-6">
+            <div className="bg-white rounded-2xl shadow-xl p-6 animate-fade-in-up opacity-0 transition-shadow duration-300 hover:shadow-2xl" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               <h2 className="text-xl font-bold text-gray-900 mb-4">
                 Informations d'achat
               </h2>

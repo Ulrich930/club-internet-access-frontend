@@ -50,10 +50,10 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 px-4">
-      <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+      <div className="max-w-md w-full animate-scale-in">
+        <div className="bg-white rounded-2xl shadow-xl p-8 transition-shadow duration-300 hover:shadow-2xl">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4 transition-transform duration-300 hover:scale-110">
               <Wifi className="h-8 w-8 text-primary-600" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -96,7 +96,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn btn-primary py-3 text-base font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full btn btn-primary py-3 text-base font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               {loading ? 'Connexion...' : 'Se connecter'}
             </button>
